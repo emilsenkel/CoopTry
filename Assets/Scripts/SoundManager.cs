@@ -29,7 +29,8 @@ public class SoundManager : MonoBehaviour
         TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;
 
         // Subscribe to all players
-        foreach (var player in FindObjectsOfType<Player>())
+        var players = FindObjectsByType<Player>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var player in players)
         {
             player.OnPickedSomething += Player_OnPickedSomething;
         }
@@ -78,7 +79,7 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
-        PlaySound(audioClipRefsSO.footstep[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f)
