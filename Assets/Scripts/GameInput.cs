@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
-    private const string PLAYER_PREFS_BINDINGS = "InputBindings_"; // Per-player
+    private const string PLAYER_PREFS_BINDINGS = "InputBindings_";
 
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
@@ -25,7 +25,7 @@ public class GameInput : MonoBehaviour
         Gamepad_Pause
     }
 
-    private PlayerInput playerInput; // For playerIndex
+    private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -50,6 +50,8 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed -= Interact_performed;
         playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
         playerInputActions.Player.Pause.performed -= Pause_performed;
+
+        playerInputActions.Player.Disable(); // Add this to fix leaks
         playerInputActions.Dispose();
     }
 
