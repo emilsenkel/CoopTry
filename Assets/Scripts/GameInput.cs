@@ -31,6 +31,12 @@ public class GameInput : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        if (playerInput == null)
+        {
+            Debug.LogError("PlayerInput component missing on " + gameObject.name);
+            return; // Prevent further errors
+        }
+
         playerInputActions = new PlayerInputActions();
 
         string bindingsKey = PLAYER_PREFS_BINDINGS + playerInput.playerIndex;
@@ -47,12 +53,15 @@ public class GameInput : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerInputActions.Player.Interact.performed -= Interact_performed;
-        playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
-        playerInputActions.Player.Pause.performed -= Pause_performed;
+        if (playerInputActions != null)
+        {
+            playerInputActions.Player.Interact.performed -= Interact_performed;
+            playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
+            playerInputActions.Player.Pause.performed -= Pause_performed;
 
-        playerInputActions.Player.Disable(); // Add this to fix leaks
-        playerInputActions.Dispose();
+            playerInputActions.Player.Disable(); // Fixes leaks
+            playerInputActions.Dispose();
+        }
     }
 
     private void Pause_performed(InputAction.CallbackContext obj)
