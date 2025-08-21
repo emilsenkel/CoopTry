@@ -11,7 +11,8 @@ public class SelectedCounterVisual : MonoBehaviour
     private void Start()
     {
         // Subscribe to all players
-        foreach (var player in FindObjectsOfType<Player>())
+        var players = FindObjectsByType<Player>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        foreach (var player in players)
         {
             player.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
         }
