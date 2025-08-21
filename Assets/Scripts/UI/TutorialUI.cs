@@ -18,7 +18,7 @@ public class TutorialUI : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<GameInput>().OnBindingRebind += GameInput_OnBindingRebind;
+        FindAnyObjectByType<GameInput>().OnBindingRebind += GameInput_OnBindingRebind;
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
 
         UpdateVisual();
@@ -41,16 +41,16 @@ public class TutorialUI : MonoBehaviour
 
     private void UpdateVisual()
     {
-        keyMoveUpText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Move_Up);
-        keyMoveDownText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Move_Down);
-        keyMoveLeftText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Move_Left);
-        keyMoveRightText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Move_Right);
-        keyInteractText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Interact);
-        keyInteractAlternateText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.InteractAlternate);
-        keyPauseText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Pause);
-        keyGamepadInteractText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_Interact);
-        keyGamepadInteractAlternateText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_InteractAlternate);
-        keyGamepadPauseText.text = FindObjectOfType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_Pause);
+        keyMoveUpText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Move_Up);
+        keyMoveDownText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Move_Down);
+        keyMoveLeftText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Move_Left);
+        keyMoveRightText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Move_Right);
+        keyInteractText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Interact);
+        keyInteractAlternateText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.InteractAlternate);
+        keyPauseText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Pause);
+        keyGamepadInteractText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_Interact);
+        keyGamepadInteractAlternateText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_InteractAlternate);
+        keyGamepadPauseText.text = FindAnyObjectByType<GameInput>().GetBindingText(GameInput.Binding.Gamepad_Pause);
     }
 
     private void Show()
